@@ -3,7 +3,7 @@ const cartItems = document.querySelector('.cart__items');
 const emptyBtn = document.querySelector('.empty-cart');
 const totalPrice = document.querySelector('.total-price');
 const preloader = document.querySelector('.loading');
-const initialPrice = 0.00;
+const initialPrice = 0;
 let total = 0;
 
 const removeLoader = () => {
