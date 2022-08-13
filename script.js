@@ -52,7 +52,7 @@ const createCartItemElement = ({ sku, name, salePrice, image }) => {
  ${salePrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
   li.addEventListener('click', () => {
     total -= salePrice;
-    totalPrice.innerText = `Subtotal: >${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
+    totalPrice.innerText = `Subtotal: >${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
   });
   li.addEventListener('click', cartItemClickListener);
   return li;
@@ -72,7 +72,7 @@ const addCart = async () => {
         .target.parentElement));
       cartItems.appendChild(createCartItemElement({ sku, name, salePrice, image }));
       total += salePrice;
-      totalPrice.innerHTML = `Subtotal: <span class='price'>${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
+      totalPrice.innerHTML = `Subtotal: >${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
       saveCartItems(cartItems.innerHTML);
       saveTotalPrice(totalPrice.innerHTML);
     }));
@@ -83,7 +83,7 @@ const emptyCart = async () => emptyBtn.addEventListener('click', () => {
   cartSection.forEach((list) => list.remove());
   localStorage.removeItem('cartItems');
   total = 0;
-  totalPrice.innerHTML = `Subtotal: <span class='price'>${initialPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
+  totalPrice.innerHTML = `Subtotal: <span class='price'>${initialPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
   localStorage.removeItem('totalPrice');
 });
 
