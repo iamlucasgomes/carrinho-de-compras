@@ -37,8 +37,10 @@ const createProductItemElement = ({ sku, name, image }) => {
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-const cartItemClickListener = (event) => {
-  event.target.remove();
+const cartItemClickListener = () => {
+  const list = document.querySelectorAll('.cart__item');
+  list.forEach((item) => item.remove();)
+  //event.target.remove();
   saveCartItems(cartItems.innerHTML);
 };
 
