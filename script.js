@@ -48,11 +48,11 @@ const cartItemClickListener = () => {
 const createCartItemElement = ({ sku, name, salePrice, image }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
-  li.innerHTML = `<img class='img_item_cart' src="${image}"><div class='descriptionItem'>${name}<p>
-  <span class='price'>${salePrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>`;
+  li.innerHTML = `<img class='img_item_cart' src="${image}">${name}<p>
+ ${salePrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
   li.addEventListener('click', () => {
     total -= salePrice;
-    totalPrice.innerHTML = `Subtotal: <span class='price'>${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
+    totalPrice.innerText = `Subtotal: >${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
   });
   li.addEventListener('click', cartItemClickListener);
   return li;
