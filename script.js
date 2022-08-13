@@ -39,6 +39,7 @@ const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').inn
 
 const cartItemClickListener = (event) => {
   event.target.remove();
+  saveCartItems(cartItems.innerHTML);
 };
 
 const createCartItemElement = ({ sku, name, salePrice, image }) => {
