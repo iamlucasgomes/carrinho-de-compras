@@ -37,21 +37,18 @@ const createProductItemElement = ({ sku, name, image }) => {
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
-const cartItemClickListener = () => {
-  const list = document.querySelectorAll('.cart__item');
-  list.forEach((item) => item.remove();)
-  //event.target.remove();
-  saveCartItems(cartItems.innerHTML);
+const cartItemClickListener = (event) => {
+  event.target.remove();
 };
 
 const createCartItemElement = ({ sku, name, salePrice, image }) => {
   const li = document.createElement('li');
   li.className = 'cart__item';
-  li.innerHTML = `<img class='img_item_cart' src="${image}">${name}<p>
- ${salePrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+  li.innerHTML = `<img class='img_item_cart' src="${image}"><div class='descriptionItem'>${name}<p>
+  <span class='price'>${salePrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>`;
   li.addEventListener('click', () => {
     total -= salePrice;
-    totalPrice.innerText = `Subtotal: >${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+    totalPrice.innerHTML = `Subtotal: <span class='price'>${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
   });
   li.addEventListener('click', cartItemClickListener);
   return li;
@@ -71,7 +68,7 @@ const addCart = async () => {
         .target.parentElement));
       cartItems.appendChild(createCartItemElement({ sku, name, salePrice, image }));
       total += salePrice;
-      totalPrice.innerHTML = `Subtotal: >${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+      totalPrice.innerHTML = `Subtotal: <span class='price'>${total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
       saveCartItems(cartItems.innerHTML);
       saveTotalPrice(totalPrice.innerHTML);
     }));
@@ -82,7 +79,7 @@ const emptyCart = async () => emptyBtn.addEventListener('click', () => {
   cartSection.forEach((list) => list.remove());
   localStorage.removeItem('cartItems');
   total = 0;
-  totalPrice.innerHTML = `Subtotal: <span class='price'>${initialPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+  totalPrice.innerHTML = `Subtotal: <span class='price'>${initialPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>`;
   localStorage.removeItem('totalPrice');
 });
 
