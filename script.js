@@ -5,7 +5,6 @@ const totalPrice = document.querySelector('.total-price');
 const preloader = document.querySelector('.loading');
 const initialPrice = 0.00;
 let total = 0;
-total = getTotalPrice();
 
 const removeLoader = () => {
   preloader.remove();
